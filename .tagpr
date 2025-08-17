@@ -1,0 +1,6 @@
+# .tagpr
+# https://github.com/Songmu/tagpr
+[tagpr]
+vPrefix = true
+releaseBranch = main
+changelog = true
