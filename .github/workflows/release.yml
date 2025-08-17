@@ -212,3 +212,6 @@ jobs:
       base64-subjects: "${{ needs.build.outputs.hashes }}"
       # Upload provenance to existing release
       upload-assets: true
+      upload-tag-name: ${{ github.ref_name }}
+      # Compile the generator from source to avoid download issues
+      compile-generator: true
