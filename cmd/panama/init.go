@@ -1,13 +1,16 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 	"path/filepath"
 
 	"github.com/spf13/cobra"
-	"gopkg.in/yaml.v3"
 )
+
+//go:embed templates/default-config.yaml
+var defaultConfigTemplate string
 
 type initOptions struct {
 	force bool
@@ -40,37 +43,9 @@ func runInit(opts *initOptions) error {
 		return fmt.Errorf("configuration file %s already exists (use --force to overwrite)", filename)
 	}
 
-	// Create default configuration
-	defaultConfig := map[string]interface{}{
-		"max_depth": 6,
-		"format":    "path",
-		"ignored_dirs": []string{
-			"node_modules",
-			".git",
-			"vendor",
-			"target",
-			"dist",
-			"build",
-			".next",
-			".nuxt",
-			".cache",
-			"__pycache__",
-			".terraform",
-		},
-	}
-
-	// Write configuration file
-	file, err := os.Create(filename)
-	if err != nil {
-		return fmt.Errorf("failed to create configuration file: %w", err)
-	}
-	defer file.Close()
-
-	// Always write YAML format
-	encoder := yaml.NewEncoder(file)
-	encoder.SetIndent(2)
-	if err := encoder.Encode(defaultConfig); err != nil {
-		return fmt.Errorf("failed to write configuration: %w", err)
+	// Write configuration file from template
+	if err := os.WriteFile(filename, []byte(defaultConfigTemplate), 0644); err != nil {
+		return fmt.Errorf("failed to write configuration file: %w", err)
 	}
 
 	absPath, _ := filepath.Abs(filename)
