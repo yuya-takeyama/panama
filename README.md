@@ -5,7 +5,7 @@ Go ahead and jump into directories in a monorepo
 ## Features
 
 - 🚀 **Fast workspace detection** - Automatically finds Git repositories and project directories
-- 🔍 **Built-in fuzzy finder** - No external dependencies like `fzf` or `peco` required
+- 🔍 **Built-in fuzzy finder** - No external dependencies like `fzf` required
 - 🌍 **Cross-platform** - Works on macOS, Linux, and Windows
 - 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, Cargo.toml, etc.)
 - 🎯 **Intelligent scoring** - Prioritizes workspaces based on depth, type, and query matching
