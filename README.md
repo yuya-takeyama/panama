@@ -2,8 +2,6 @@
 
 Go ahead and jump into directories in a monorepo
 
-Fast workspace finder and switcher with built-in fuzzy finder.
-
 ## Features
 
 - 🚀 **Fast workspace detection** - Automatically finds Git repositories and project directories
@@ -197,10 +195,6 @@ go install ./cmd/panama
 - Go 1.25 or later (for building from source)
 - No external runtime dependencies
 
-## License
-
-MIT
-
 ## Name Origin
 
 Panama stands for **P**roject-**A**ware **N**avigator **A**cross **M**onorepo **A**pps.
@@ -209,3 +203,7 @@ Panama stands for **P**roject-**A**ware **N**avigator **A**cross **M**onorepo **
 
 - https://www.youtube.com/watch?v=fuKDBPw8wQA
 - https://www.youtube.com/watch?v=SwYN7mTi6HM
+
+## License
+
+MIT
