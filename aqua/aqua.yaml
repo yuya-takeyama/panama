@@ -15,3 +15,6 @@ packages:
   - name: goreleaser/goreleaser@v2.11.1
   - name: Songmu/tagpr@v1.7.0
   - name: suzuki-shunsuke/pinact@v3.4.1
+  - name: sigstore/cosign@v2.5.3
+  - name: google/go-licenses@v1.6.0
+  - name: anchore/syft@v1.29.1
