@@ -36,7 +36,6 @@ func DefaultConfig() *Config {
 			".nuxt",
 			".cache",
 			"__pycache__",
-			".terraform",
 		},
 	}
 }
