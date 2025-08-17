@@ -98,7 +98,6 @@ ignored_dirs:
   - .nuxt
   - .cache
   - __pycache__
-  - .terraform
 ```
 
 ## Workspace Detection
