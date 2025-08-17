@@ -16,7 +16,8 @@ type Config struct {
 	NoCache    bool     `yaml:"no_cache"`
 	Workspaces []string `yaml:"workspaces"`
 	IgnoreDirs []string `yaml:"ignored_dirs"`
-	ConfigDir  string   `yaml:"-"` // Directory where config was found
+	Patterns   []string `yaml:"patterns"` // Custom workspace detection patterns
+	ConfigDir  string   `yaml:"-"`        // Directory where config was found
 }
 
 func DefaultConfig() *Config {

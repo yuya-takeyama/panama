@@ -29,6 +29,9 @@ func CollectWorkspaces(rootDir string, cfg *config.Config, opts Options) ([]*wor
 		ignorePatterns[i] = "**/" + dir
 	}
 
+	// Create detector with custom patterns
+	detector := workspace.NewDetector(cfg.Patterns)
+
 	visited := make(map[string]bool)
 
 	// If specific workspace directories are configured, search those
@@ -39,14 +42,14 @@ func CollectWorkspaces(rootDir string, cfg *config.Config, opts Options) ([]*wor
 				absPath = filepath.Join(rootDir, wsPath)
 			}
 
-			if err := collectFromPath(absPath, rootDir, maxDepth, ignorePatterns, visited, &workspaces); err != nil {
+			if err := collectFromPath(absPath, rootDir, maxDepth, ignorePatterns, visited, detector, &workspaces); err != nil {
 				// Log but continue with other paths
 				continue
 			}
 		}
 	} else {
 		// Search from root directory
-		if err := collectFromPath(rootDir, rootDir, maxDepth, ignorePatterns, visited, &workspaces); err != nil {
+		if err := collectFromPath(rootDir, rootDir, maxDepth, ignorePatterns, visited, detector, &workspaces); err != nil {
 			return nil, err
 		}
 	}
@@ -59,7 +62,7 @@ func CollectWorkspaces(rootDir string, cfg *config.Config, opts Options) ([]*wor
 	return workspaces, nil
 }
 
-func collectFromPath(searchPath, basePath string, maxDepth int, ignorePatterns []string, visited map[string]bool, workspaces *[]*workspace.Workspace) error {
+func collectFromPath(searchPath, basePath string, maxDepth int, ignorePatterns []string, visited map[string]bool, detector *workspace.Detector, workspaces *[]*workspace.Workspace) error {
 	return filepath.Walk(searchPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return nil // Skip on error
@@ -89,7 +92,7 @@ func collectFromPath(searchPath, basePath string, maxDepth int, ignorePatterns [
 		}
 
 		// Check if it's a workspace
-		if workspace.IsWorkspace(path) {
+		if detector.IsWorkspaceWithPatterns(path) {
 			ws := &workspace.Workspace{
 				Path:       path,
 				Name:       filepath.Base(path),
