@@ -42,7 +42,6 @@ func runInit(opts *initOptions) error {
 
 	// Create default configuration
 	defaultConfig := map[string]interface{}{
-		"ui":        "fuzzyfinder",
 		"max_depth": 3,
 		"format":    "path",
 		"ignore_dirs": []string{

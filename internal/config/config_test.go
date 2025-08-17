@@ -9,10 +9,6 @@ import (
 func TestDefaultConfig(t *testing.T) {
 	cfg := DefaultConfig()
 
-	if cfg.UI != "fuzzyfinder" {
-		t.Errorf("expected UI to be 'fuzzyfinder', got '%s'", cfg.UI)
-	}
-
 	if cfg.MaxDepth != 3 {
 		t.Errorf("expected MaxDepth to be 3, got %d", cfg.MaxDepth)
 	}
@@ -35,25 +31,14 @@ func TestConfig_Validate(t *testing.T) {
 		{
 			name: "valid config",
 			config: Config{
-				UI:       "fuzzyfinder",
 				MaxDepth: 3,
 				Format:   "path",
 			},
 			wantErr: false,
 		},
 		{
-			name: "invalid UI",
-			config: Config{
-				UI:       "invalid",
-				MaxDepth: 3,
-				Format:   "path",
-			},
-			wantErr: true,
-		},
-		{
 			name: "invalid max depth",
 			config: Config{
-				UI:       "fuzzyfinder",
 				MaxDepth: 0,
 				Format:   "path",
 			},
@@ -62,25 +47,14 @@ func TestConfig_Validate(t *testing.T) {
 		{
 			name: "invalid format",
 			config: Config{
-				UI:       "fuzzyfinder",
 				MaxDepth: 3,
 				Format:   "invalid",
 			},
 			wantErr: true,
 		},
 		{
-			name: "stdio UI",
-			config: Config{
-				UI:       "stdio",
-				MaxDepth: 3,
-				Format:   "cd",
-			},
-			wantErr: false,
-		},
-		{
 			name: "json format",
 			config: Config{
-				UI:       "fuzzyfinder",
 				MaxDepth: 3,
 				Format:   "json",
 			},
@@ -109,7 +83,6 @@ func TestLoadFromFile(t *testing.T) {
 	// Test YAML config
 	yamlPath := filepath.Join(tmpDir, ".panama.yaml")
 	yamlContent := `
-ui: stdio
 max_depth: 5
 format: json
 `
@@ -120,10 +93,6 @@ format: json
 	cfg := DefaultConfig()
 	if err := loadFromFile(yamlPath, cfg); err != nil {
 		t.Errorf("failed to load YAML config: %v", err)
-	}
-
-	if cfg.UI != "stdio" {
-		t.Errorf("expected UI to be 'stdio', got '%s'", cfg.UI)
 	}
 
 	if cfg.MaxDepth != 5 {

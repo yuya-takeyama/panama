@@ -99,9 +99,7 @@ func runSelect(args []string, opts *selectOptions) error {
 
 	// Check if we should use interactive mode
 	// Only check stdin as fuzzyfinder uses /dev/tty directly
-	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) &&
-		!opts.first &&
-		cfg.UI != "stdio"
+	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) && !opts.first
 
 	var selectedPath string
 
@@ -119,24 +117,6 @@ func runSelect(args []string, opts *selectOptions) error {
 
 		// Show fuzzy finder
 		idx, err := fuzzyfinder.Select(items, opts.query)
-		if err != nil {
-			return err
-		}
-
-		selectedPath = workspaces[idx].Path
-	} else if cfg.UI == "stdio" && !opts.first {
-		// Use stdio selection
-		items := make([]fuzzyfinder.Item, len(workspaces))
-		for i, ws := range workspaces {
-			items[i] = fuzzyfinder.Item{
-				Label:       ws.LabelWithBase(searchRoot),
-				Description: ws.Description,
-				Path:        ws.Path,
-				Score:       ws.Score,
-			}
-		}
-
-		idx, err := fuzzyfinder.StdioSelect(items)
 		if err != nil {
 			return err
 		}

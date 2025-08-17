@@ -10,7 +10,6 @@ import (
 )
 
 type Config struct {
-	UI          string      `yaml:"ui"`
 	MaxDepth    int         `yaml:"max_depth"`
 	Format      string      `yaml:"format"`
 	Silent      bool        `yaml:"silent"`
@@ -29,7 +28,6 @@ type ScoreConfig struct {
 
 func DefaultConfig() *Config {
 	return &Config{
-		UI:       "fuzzyfinder",
 		MaxDepth: 3,
 		Format:   "path",
 		Silent:   false,
@@ -110,10 +108,6 @@ func loadFromFile(path string, cfg *Config) error {
 func (c *Config) Validate() error {
 	if c.MaxDepth < 1 {
 		return fmt.Errorf("max_depth must be at least 1")
-	}
-
-	if c.UI != "fuzzyfinder" && c.UI != "stdio" {
-		return fmt.Errorf("ui must be either 'fuzzyfinder' or 'stdio'")
 	}
 
 	if c.Format != "path" && c.Format != "cd" && c.Format != "json" {

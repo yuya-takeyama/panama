@@ -69,9 +69,6 @@ panama list --max-depth 2
 ```bash
 # Create .panama.yaml
 panama init
-
-# Create with different format
-panama init --format toml
 ```
 
 ## Configuration
@@ -84,9 +81,6 @@ The configuration file is searched upward from the current directory.
 ### Example configuration
 
 ```yaml
-# UI mode: fuzzyfinder or stdio
-ui: fuzzyfinder
-
 # Maximum search depth
 max_depth: 3
 
@@ -164,7 +158,6 @@ end
 ## Environment Variables
 
 - `PANAMA_CONFIG` - Path to configuration file
-- `PANAMA_UI` - Override UI mode (fuzzyfinder/stdio)
 
 ## Development
 
