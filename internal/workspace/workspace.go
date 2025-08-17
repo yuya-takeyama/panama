@@ -10,8 +10,6 @@ type Workspace struct {
 	Name        string `json:"name"`
 	Description string `json:"description,omitempty"`
 	Depth       int    `json:"depth"`
-	HasGit      bool   `json:"has_git"`
-	HasPackage  bool   `json:"has_package"`
 }
 
 func (w *Workspace) Label() string {

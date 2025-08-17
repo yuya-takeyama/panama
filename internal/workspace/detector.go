@@ -96,22 +96,6 @@ func IsWorkspace(dir string) bool {
 	return false
 }
 
-func HasGitRepo(dir string) bool {
-	gitPath := filepath.Join(dir, ".git")
-	info, err := os.Stat(gitPath)
-	return err == nil && info.IsDir()
-}
-
-func HasPackageFile(dir string) bool {
-	for _, file := range packageFiles {
-		path := filepath.Join(dir, file)
-		if _, err := os.Stat(path); err == nil {
-			return true
-		}
-	}
-	return false
-}
-
 func GetPackageType(dir string) string {
 	packageTypes := map[string]string{
 		"package.json":     "node",

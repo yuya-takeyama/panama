@@ -64,28 +64,24 @@ func TestWorkspace_Label(t *testing.T) {
 		{
 			name: "with git",
 			ws: Workspace{
-				Path:   "/home/user/myproject",
-				Name:   "myproject",
-				HasGit: true,
+				Path: "/home/user/myproject",
+				Name: "myproject",
 			},
 			want: "/home/user/myproject",
 		},
 		{
 			name: "with package",
 			ws: Workspace{
-				Path:       "/home/user/myproject",
-				Name:       "myproject",
-				HasPackage: true,
+				Path: "/home/user/myproject",
+				Name: "myproject",
 			},
 			want: "/home/user/myproject",
 		},
 		{
 			name: "with both git and package",
 			ws: Workspace{
-				Path:       "/home/user/myproject",
-				Name:       "myproject",
-				HasGit:     true,
-				HasPackage: true,
+				Path: "/home/user/myproject",
+				Name: "myproject",
 			},
 			want: "/home/user/myproject",
 		},
@@ -129,9 +125,8 @@ func TestWorkspace_LabelWithBase(t *testing.T) {
 		{
 			name: "with git",
 			ws: Workspace{
-				Path:   "/home/user/projects/myapp",
-				Name:   "myapp",
-				HasGit: true,
+				Path: "/home/user/projects/myapp",
+				Name: "myapp",
 			},
 			base: "/home/user/projects",
 			want: "myapp",

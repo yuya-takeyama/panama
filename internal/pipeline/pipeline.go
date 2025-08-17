@@ -94,11 +94,9 @@ func collectFromPath(searchPath, basePath string, maxDepth int, ignorePatterns [
 		// Check if it's a workspace
 		if detector.IsWorkspaceWithPatterns(path) {
 			ws := &workspace.Workspace{
-				Path:       path,
-				Name:       filepath.Base(path),
-				Depth:      depth,
-				HasGit:     workspace.HasGitRepo(path),
-				HasPackage: workspace.HasPackageFile(path),
+				Path:  path,
+				Name:  filepath.Base(path),
+				Depth: depth,
 			}
 
 			// Add package type as description
