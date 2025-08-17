@@ -37,6 +37,9 @@ go.work.sum
 # Build output (binary only at root)
 /panama
 
+# Third party licenses generated during build
+third_party_licenses/
+
 # OS
 .DS_Store
 Thumbs.db
