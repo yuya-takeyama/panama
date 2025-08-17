@@ -27,6 +27,9 @@ func Select(items []Item, query string) (int, error) {
 		return 0, nil
 	}
 
+	// Get current working directory to preselect it
+	cwd, _ := os.Getwd()
+
 	opts := []fuzzyfinder.Option{
 		fuzzyfinder.WithPromptString("workspaces > "),
 	}
@@ -34,6 +37,15 @@ func Select(items []Item, query string) (int, error) {
 	if query != "" {
 		opts = append(opts, fuzzyfinder.WithQuery(query))
 	}
+
+	// Add preselection for current directory
+	opts = append(opts, fuzzyfinder.WithPreselected(func(i int) bool {
+		if i < 0 || i >= len(items) {
+			return false
+		}
+		// Check if the item's path matches the current directory
+		return items[i].Path == cwd
+	}))
 
 	if len(items) > 0 && items[0].Description != "" {
 		opts = append(opts, fuzzyfinder.WithPreviewWindow(func(i, w, h int) string {
@@ -76,6 +88,9 @@ func SelectMulti(items []Item, query string) ([]int, error) {
 		return []int{0}, nil
 	}
 
+	// Get current working directory to preselect it
+	cwd, _ := os.Getwd()
+
 	opts := []fuzzyfinder.Option{
 		fuzzyfinder.WithPromptString("workspaces > "),
 	}
@@ -83,6 +98,15 @@ func SelectMulti(items []Item, query string) ([]int, error) {
 	if query != "" {
 		opts = append(opts, fuzzyfinder.WithQuery(query))
 	}
+
+	// Add preselection for current directory
+	opts = append(opts, fuzzyfinder.WithPreselected(func(i int) bool {
+		if i < 0 || i >= len(items) {
+			return false
+		}
+		// Check if the item's path matches the current directory
+		return items[i].Path == cwd
+	}))
 
 	if len(items) > 0 && items[0].Description != "" {
 		opts = append(opts, fuzzyfinder.WithPreviewWindow(func(i, w, h int) string {
