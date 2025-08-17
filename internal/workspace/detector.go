@@ -22,6 +22,8 @@ var packageFiles = []string{
 	"CMakeLists.txt",   // CMake
 	".clang-format",    // C/C++
 	"stack.yaml",       // Haskell
+	"terraform.tf",     // Terraform
+	"main.tf",          // Terraform
 }
 
 func IsWorkspace(dir string) bool {
@@ -73,6 +75,8 @@ func GetPackageType(dir string) string {
 		"pubspec.yaml":     "dart",
 		"mix.exs":          "elixir",
 		"stack.yaml":       "haskell",
+		"terraform.tf":     "terraform",
+		"main.tf":          "terraform",
 	}
 
 	for file, packageType := range packageTypes {
