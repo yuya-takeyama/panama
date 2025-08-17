@@ -7,7 +7,8 @@ Go ahead and jump into directories in a monorepo
 - 🚀 **Fast workspace detection** - Automatically finds Git repositories and project directories
 - 🔍 **Built-in fuzzy finder** - No external dependencies like `fzf` required
 - 🌍 **Cross-platform** - Works on macOS, Linux, and Windows
-- 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, Cargo.toml, etc.)
+- 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, pyproject.toml, etc.)
+- ⚙️ **Customizable patterns** - Configure your own workspace detection patterns
 
 ## Installation
 
@@ -88,6 +89,16 @@ ignored_dirs:
   - .cache
   - __pycache__
   - .terraform
+
+# Custom workspace detection patterns
+# Defaults: package.json, go.mod, pyproject.toml
+patterns:
+  - package.json
+  - go.mod
+  - pyproject.toml
+  # Add more patterns as needed:
+  # - Cargo.toml        # Rust
+  # - "*.xcodeproj"     # Xcode project
 ```
 
 ## Workspace Detection
@@ -97,22 +108,17 @@ Panama detects workspaces by looking for:
 ### Version Control
 - `.git` directories
 
-### Package/Project Files
+### Default Package Files
+By default, Panama looks for these minimal patterns:
 - `package.json` (Node.js)
 - `go.mod` (Go)
-- `Cargo.toml` (Rust)
-- `pom.xml` (Maven)
-- `build.gradle` / `build.gradle.kts` (Gradle)
-- `pyproject.toml` / `requirements.txt` (Python)
-- `Gemfile` (Ruby)
-- `composer.json` (PHP)
-- `pubspec.yaml` (Dart/Flutter)
-- `mix.exs` (Elixir)
-- `Makefile`
-- `CMakeLists.txt` (CMake)
-- `.clang-format` (C/C++)
-- `stack.yaml` (Haskell)
-- `terraform.tf` / `main.tf` (Terraform)
+- `pyproject.toml` (Python)
+
+### Custom Patterns
+You can add more detection patterns in your `.panama.yaml`:
+- Use exact filenames: `Cargo.toml`, `pom.xml`
+- Use glob patterns: `*.xcodeproj`, `*.workspace`
+- Add project-specific markers: `.workspace`, `project.config`
 
 ## Shell Integration
 

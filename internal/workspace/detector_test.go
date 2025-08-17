@@ -34,16 +34,9 @@ func TestIsWorkspace(t *testing.T) {
 			want: true,
 		},
 		{
-			name: "with terraform.tf",
+			name: "with pyproject.toml",
 			setupFunc: func(dir string) error {
-				return os.WriteFile(filepath.Join(dir, "terraform.tf"), []byte("terraform {}"), 0644)
-			},
-			want: true,
-		},
-		{
-			name: "with main.tf",
-			setupFunc: func(dir string) error {
-				return os.WriteFile(filepath.Join(dir, "main.tf"), []byte("provider {}"), 0644)
+				return os.WriteFile(filepath.Join(dir, "pyproject.toml"), []byte("[tool.poetry]"), 0644)
 			},
 			want: true,
 		},
@@ -90,27 +83,6 @@ func TestGetPackageType(t *testing.T) {
 				return os.WriteFile(filepath.Join(dir, "go.mod"), []byte("module test"), 0644)
 			},
 			want: "go",
-		},
-		{
-			name: "Terraform project with terraform.tf",
-			setupFunc: func(dir string) error {
-				return os.WriteFile(filepath.Join(dir, "terraform.tf"), []byte("terraform {}"), 0644)
-			},
-			want: "terraform",
-		},
-		{
-			name: "Terraform project with main.tf",
-			setupFunc: func(dir string) error {
-				return os.WriteFile(filepath.Join(dir, "main.tf"), []byte("provider {}"), 0644)
-			},
-			want: "terraform",
-		},
-		{
-			name: "Rust project",
-			setupFunc: func(dir string) error {
-				return os.WriteFile(filepath.Join(dir, "Cargo.toml"), []byte("[package]"), 0644)
-			},
-			want: "rust",
 		},
 		{
 			name: "Python project with pyproject.toml",

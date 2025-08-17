@@ -28,8 +28,16 @@ ignored_dirs:
 # Custom workspace detection patterns
 # Add file or directory patterns that indicate a workspace root
 # Supports glob patterns (e.g., "*.xcodeproj", "*.workspace")
-# patterns:
-#   - .workspace        # Custom workspace marker file
-#   - project.config    # Project-specific config file
-#   - "*.xcodeproj"     # Xcode project directories
-#   - workspace.json    # Nx monorepo workspace
+# Default patterns when not specified:
+#   - package.json     # Node.js
+#   - go.mod           # Go
+#   - pyproject.toml   # Python
+patterns:
+  - package.json
+  - go.mod
+  - pyproject.toml
+  # Add more patterns as needed:
+  # - Cargo.toml        # Rust
+  # - pom.xml           # Maven
+  # - "*.xcodeproj"     # Xcode project
+  # - workspace.json    # Nx monorepo
