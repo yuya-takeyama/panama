@@ -1,0 +1,114 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/Songmu/tagpr/v1.7.0/tagpr_v1.7.0_darwin_amd64.zip",
+      "checksum": "FC270753B67D54AA3A8CAA9B27CC9C597AA359482C725782D05B41D468A47E7F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/Songmu/tagpr/v1.7.0/tagpr_v1.7.0_darwin_arm64.zip",
+      "checksum": "E60B0BA2934E72785236C76A5F7BCDC00C82A7F9B4D89FEED74614C16469A8B9",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/Songmu/tagpr/v1.7.0/tagpr_v1.7.0_linux_amd64.tar.gz",
+      "checksum": "A256615CB5FAC33E7F317FE7D3583AA300BB55A910C19499F9A67E7E39BFAC79",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/Songmu/tagpr/v1.7.0/tagpr_v1.7.0_linux_arm64.tar.gz",
+      "checksum": "7492EC863F6AA5ABACA0A239C4198258832FB8817130A1F3021595987361701C",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_linux_amd64.tar.gz",
+      "checksum": "BC46A0F43FA357CDFCFFC77F92A48303F5BACD97CF3E59A807DA2682CA4126DA",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_linux_arm64.tar.gz",
+      "checksum": "F09E870529DDAEB6EA015A9AB867DF019A913FB6D2FDA4F15E80003828A439FC",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_macOS_amd64.zip",
+      "checksum": "2F041410D27FFB60CC9ACEAF4219C19CA1A99F9230180004B47DA21B1F41F8AD",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_macOS_arm64.zip",
+      "checksum": "678E976B72C453E13131409B12794859C58F0750F75DC1C71B57601E247B6F01",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_windows_amd64.zip",
+      "checksum": "DDCB6E76D93496D095B34DFA3B3686DC4C1A212A8833C2BC4F0695E144108221",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.76.0/gh_2.76.0_windows_arm64.zip",
+      "checksum": "2E769823ABFCC80AB221FE2D3F8B0CDDC4F49FCABC32D9912851166FDE228A15",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/goreleaser/goreleaser/v2.11.1/goreleaser_Darwin_all.tar.gz",
+      "checksum": "56332618D18F886E024F563A06C0AC0DE659A19D4DD64E0466A92EBC1B5C0C51",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/goreleaser/goreleaser/v2.11.1/goreleaser_Linux_arm64.tar.gz",
+      "checksum": "F0D3085A62898BF562177E5E5199DD83965DF5F0495B9FB495559AC06D83ED9D",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/goreleaser/goreleaser/v2.11.1/goreleaser_Linux_x86_64.tar.gz",
+      "checksum": "A01E2E9B72D9EE922361EF05263CF6FA77DB4686DF861B2B0D43713919C495C0",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/goreleaser/goreleaser/v2.11.1/goreleaser_Windows_arm64.zip",
+      "checksum": "358235A0D20C438468508AD59F0739BADDE1CC6F91DE8BCCD10F6B3D7E5D3FD1",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/goreleaser/goreleaser/v2.11.1/goreleaser_Windows_x86_64.zip",
+      "checksum": "7EF5EE78A55BFC24107B5E8815EF83D6784CB548FF6A558D6D05D077A2E7FF1E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_darwin_amd64.tar.gz",
+      "checksum": "97CDBD4BA2A0D6BDDFA0BC26623562FFF6F26BCAAAC25B4A133A55F48EB4A076",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_darwin_arm64.tar.gz",
+      "checksum": "E3A5E2C22F13D12865EFC49C21B16435A51DC6F6FABB8C6CDE756265A0F9D085",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_linux_amd64.tar.gz",
+      "checksum": "A805F69671F9713313DA6BF870BAAB29C320B3F4FE304220EBB24A63A2234347",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_linux_arm64.tar.gz",
+      "checksum": "5F7570C541F572296EFBB6544DFA5E44D1D8D6ACA6F2113D7AD44EA72A0C2F9F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_windows_amd64.zip",
+      "checksum": "E60D8558EA267EC2E9E8276577CC6217378EE2BEBC3743EA19C040A460259CA4",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/suzuki-shunsuke/pinact/v3.4.1/pinact_windows_arm64.zip",
+      "checksum": "11AA6EAFC587BBF93748E54DFDFC1695DC0E000882A533595BCC0BAA760D1AFF",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.388.0/registry.yaml",
+      "checksum": "843AD25F76AE3A67BF629BD29DA7118110AEF15ED48034FF7F688AB7097F34EB",
+      "algorithm": "sha256"
+    }
+  ]
+}

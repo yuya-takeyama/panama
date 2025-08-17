@@ -1,0 +1,38 @@
+# Panama workspace finder configuration
+# https://github.com/yuya-takeyama/panama
+
+# Maximum depth to search for workspaces from the root directory
+max_depth: 6
+
+# Output format for results
+# Options: path, cd, json
+format: path
+
+# Workspace detection patterns
+# Add file or directory patterns that indicate a workspace root
+# Supports glob patterns (e.g., "*.xcodeproj", "*.workspace")
+# Without these patterns, only .git directories will be detected as workspaces
+patterns:
+  - package.json
+  - go.mod
+  - pyproject.toml
+  # Add more patterns as needed:
+  # - Cargo.toml        # Rust
+  # - pom.xml           # Maven
+  # - "*.xcodeproj"     # Xcode project
+  # - workspace.json    # Nx monorepo
+
+# Directories to ignore during workspace search
+# These directories will be skipped completely
+# Without this configuration, all directories will be searched
+ignored_dirs:
+  - node_modules
+  - .git
+  - vendor
+  - target
+  - dist
+  - build
+  - .next
+  - .nuxt
+  - .cache
+  - __pycache__

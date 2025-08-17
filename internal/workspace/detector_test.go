@@ -1,0 +1,116 @@
+package workspace
+
+import (
+	"os"
+	"path/filepath"
+	"testing"
+)
+
+func TestIsWorkspace(t *testing.T) {
+	tests := []struct {
+		name      string
+		setupFunc func(dir string) error
+		want      bool
+	}{
+		{
+			name: "with .git directory",
+			setupFunc: func(dir string) error {
+				return os.MkdirAll(filepath.Join(dir, ".git"), 0755)
+			},
+			want: true,
+		},
+		{
+			name: "with package.json",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "package.json"), []byte("{}"), 0644)
+			},
+			want: false, // No default patterns, so package.json alone doesn't make it a workspace
+		},
+		{
+			name: "with go.mod",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "go.mod"), []byte("module test"), 0644)
+			},
+			want: false, // No default patterns, so go.mod alone doesn't make it a workspace
+		},
+		{
+			name: "with pyproject.toml",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "pyproject.toml"), []byte("[tool.poetry]"), 0644)
+			},
+			want: false, // No default patterns, so pyproject.toml alone doesn't make it a workspace
+		},
+		{
+			name: "empty directory",
+			setupFunc: func(dir string) error {
+				return nil
+			},
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			dir := t.TempDir()
+			if err := tt.setupFunc(dir); err != nil {
+				t.Fatalf("setup failed: %v", err)
+			}
+
+			got := IsWorkspace(dir)
+			if got != tt.want {
+				t.Errorf("IsWorkspace() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetPackageType(t *testing.T) {
+	tests := []struct {
+		name      string
+		setupFunc func(dir string) error
+		want      string
+	}{
+		{
+			name: "Node.js project",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "package.json"), []byte("{}"), 0644)
+			},
+			want: "node",
+		},
+		{
+			name: "Go project",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "go.mod"), []byte("module test"), 0644)
+			},
+			want: "go",
+		},
+		{
+			name: "Python project with pyproject.toml",
+			setupFunc: func(dir string) error {
+				return os.WriteFile(filepath.Join(dir, "pyproject.toml"), []byte("[tool.poetry]"), 0644)
+			},
+			want: "python",
+		},
+		{
+			name: "No package file",
+			setupFunc: func(dir string) error {
+				return nil
+			},
+			want: "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			dir := t.TempDir()
+			if err := tt.setupFunc(dir); err != nil {
+				t.Fatalf("setup failed: %v", err)
+			}
+
+			got := GetPackageType(dir)
+			if got != tt.want {
+				t.Errorf("GetPackageType() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
