@@ -56,34 +56,38 @@ func TestWorkspace_Label(t *testing.T) {
 		{
 			name: "plain workspace",
 			ws: Workspace{
+				Path: "/home/user/myproject",
 				Name: "myproject",
 			},
-			want: "myproject",
+			want: "/home/user/myproject",
 		},
 		{
 			name: "with git",
 			ws: Workspace{
+				Path:   "/home/user/myproject",
 				Name:   "myproject",
 				HasGit: true,
 			},
-			want: "myproject [git]",
+			want: "/home/user/myproject [git]",
 		},
 		{
 			name: "with package",
 			ws: Workspace{
+				Path:       "/home/user/myproject",
 				Name:       "myproject",
 				HasPackage: true,
 			},
-			want: "myproject [pkg]",
+			want: "/home/user/myproject [pkg]",
 		},
 		{
 			name: "with both git and package",
 			ws: Workspace{
+				Path:       "/home/user/myproject",
 				Name:       "myproject",
 				HasGit:     true,
 				HasPackage: true,
 			},
-			want: "myproject [git] [pkg]",
+			want: "/home/user/myproject [git] [pkg]",
 		},
 	}
 
@@ -92,6 +96,53 @@ func TestWorkspace_Label(t *testing.T) {
 			got := tt.ws.Label()
 			if got != tt.want {
 				t.Errorf("Workspace.Label() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestWorkspace_LabelWithBase(t *testing.T) {
+	tests := []struct {
+		name string
+		ws   Workspace
+		base string
+		want string
+	}{
+		{
+			name: "relative path",
+			ws: Workspace{
+				Path: "/home/user/projects/myapp",
+				Name: "myapp",
+			},
+			base: "/home/user/projects",
+			want: "myapp",
+		},
+		{
+			name: "nested relative path",
+			ws: Workspace{
+				Path: "/home/user/projects/frontend/app",
+				Name: "app",
+			},
+			base: "/home/user/projects",
+			want: "frontend/app",
+		},
+		{
+			name: "with git",
+			ws: Workspace{
+				Path:   "/home/user/projects/myapp",
+				Name:   "myapp",
+				HasGit: true,
+			},
+			base: "/home/user/projects",
+			want: "myapp [git]",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.ws.LabelWithBase(tt.base)
+			if got != tt.want {
+				t.Errorf("Workspace.LabelWithBase() = %v, want %v", got, tt.want)
 			}
 		})
 	}
