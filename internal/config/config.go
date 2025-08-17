@@ -1,32 +1,30 @@
 package config
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 
-	"github.com/pelletier/go-toml/v2"
 	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
-	UI          string      `yaml:"ui" toml:"ui" json:"ui"`
-	MaxDepth    int         `yaml:"max_depth" toml:"max_depth" json:"max_depth"`
-	Format      string      `yaml:"format" toml:"format" json:"format"`
-	Silent      bool        `yaml:"silent" toml:"silent" json:"silent"`
-	NoCache     bool        `yaml:"no_cache" toml:"no_cache" json:"no_cache"`
-	Workspaces  []string    `yaml:"workspaces" toml:"workspaces" json:"workspaces"`
-	IgnoreDirs  []string    `yaml:"ignore_dirs" toml:"ignore_dirs" json:"ignore_dirs"`
-	ScoreConfig ScoreConfig `yaml:"score" toml:"score" json:"score"`
-	ConfigDir   string      `yaml:"-" toml:"-" json:"-"` // Directory where config was found
+	UI          string      `yaml:"ui"`
+	MaxDepth    int         `yaml:"max_depth"`
+	Format      string      `yaml:"format"`
+	Silent      bool        `yaml:"silent"`
+	NoCache     bool        `yaml:"no_cache"`
+	Workspaces  []string    `yaml:"workspaces"`
+	IgnoreDirs  []string    `yaml:"ignore_dirs"`
+	ScoreConfig ScoreConfig `yaml:"score"`
+	ConfigDir   string      `yaml:"-"` // Directory where config was found
 }
 
 type ScoreConfig struct {
-	RecentAccessWeight float64 `yaml:"recent_access_weight" toml:"recent_access_weight" json:"recent_access_weight"`
-	FrequencyWeight    float64 `yaml:"frequency_weight" toml:"frequency_weight" json:"frequency_weight"`
-	DepthPenalty       float64 `yaml:"depth_penalty" toml:"depth_penalty" json:"depth_penalty"`
+	RecentAccessWeight float64 `yaml:"recent_access_weight"`
+	FrequencyWeight    float64 `yaml:"frequency_weight"`
+	DepthPenalty       float64 `yaml:"depth_penalty"`
 }
 
 func DefaultConfig() *Config {
@@ -71,7 +69,7 @@ func Load(configPath, rootDir string) *Config {
 	// Search for config file upward from rootDir
 	dir := rootDir
 	for {
-		for _, name := range []string{".panama.yaml", ".panama.yml", ".panama.toml", ".panama.json"} {
+		for _, name := range []string{".panama.yaml", ".panama.yml"} {
 			path := filepath.Join(dir, name)
 			if _, err := os.Stat(path); err == nil {
 				if err := loadFromFile(path, cfg); err != nil {
@@ -104,12 +102,8 @@ func loadFromFile(path string, cfg *Config) error {
 	switch ext {
 	case ".yaml", ".yml":
 		return yaml.Unmarshal(data, cfg)
-	case ".toml":
-		return toml.Unmarshal(data, cfg)
-	case ".json":
-		return json.Unmarshal(data, cfg)
 	default:
-		return fmt.Errorf("unsupported config file format: %s", ext)
+		return fmt.Errorf("unsupported config file format: %s (only .yaml and .yml are supported)", ext)
 	}
 }
 

@@ -5,7 +5,6 @@ go 1.22
 require (
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/ktr0731/go-fuzzyfinder v0.8.0
-	github.com/pelletier/go-toml/v2 v2.2.0
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/term v0.18.0
 	gopkg.in/yaml.v3 v3.0.1

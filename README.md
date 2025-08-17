@@ -78,8 +78,6 @@ panama init --format toml
 
 Panama looks for configuration files in the following order:
 - `.panama.yaml` / `.panama.yml`
-- `.panama.toml`
-- `.panama.json`
 
 The configuration file is searched upward from the current directory.
 

@@ -10,8 +10,7 @@ import (
 )
 
 type initOptions struct {
-	format string
-	force  bool
+	force bool
 }
 
 func newInitCommand() *cobra.Command {
@@ -27,25 +26,14 @@ func newInitCommand() *cobra.Command {
 	}
 
 	flags := cmd.Flags()
-	flags.StringVar(&opts.format, "format", "yaml", "Configuration format (yaml|toml|json)")
 	flags.BoolVar(&opts.force, "force", false, "Overwrite existing configuration file")
 
 	return cmd
 }
 
 func runInit(opts *initOptions) error {
-	// Determine filename based on format
-	var filename string
-	switch opts.format {
-	case "yaml", "yml":
-		filename = ".panama.yaml"
-	case "toml":
-		filename = ".panama.toml"
-	case "json":
-		filename = ".panama.json"
-	default:
-		return fmt.Errorf("unsupported format: %s", opts.format)
-	}
+	// Always use .panama.yaml
+	filename := ".panama.yaml"
 
 	// Check if file already exists
 	if _, err := os.Stat(filename); err == nil && !opts.force {
@@ -83,69 +71,11 @@ func runInit(opts *initOptions) error {
 	}
 	defer file.Close()
 
-	switch opts.format {
-	case "yaml", "yml":
-		encoder := yaml.NewEncoder(file)
-		encoder.SetIndent(2)
-		if err := encoder.Encode(defaultConfig); err != nil {
-			return fmt.Errorf("failed to write configuration: %w", err)
-		}
-	case "toml":
-		// For simplicity, we'll output a static TOML template
-		tomlContent := `# Panama configuration file
-
-ui = "fuzzyfinder"
-max_depth = 3
-format = "path"
-
-ignore_dirs = [
-  "node_modules",
-  ".git",
-  "vendor",
-  "target",
-  "dist",
-  "build",
-  ".next",
-  ".nuxt",
-  ".cache",
-  "__pycache__"
-]
-
-[score]
-recent_access_weight = 0.5
-frequency_weight = 0.3
-depth_penalty = 0.1
-`
-		if _, err := file.WriteString(tomlContent); err != nil {
-			return fmt.Errorf("failed to write configuration: %w", err)
-		}
-	case "json":
-		jsonContent := `{
-  "ui": "fuzzyfinder",
-  "max_depth": 3,
-  "format": "path",
-  "ignore_dirs": [
-    "node_modules",
-    ".git",
-    "vendor",
-    "target",
-    "dist",
-    "build",
-    ".next",
-    ".nuxt",
-    ".cache",
-    "__pycache__"
-  ],
-  "score": {
-    "recent_access_weight": 0.5,
-    "frequency_weight": 0.3,
-    "depth_penalty": 0.1
-  }
-}
-`
-		if _, err := file.WriteString(jsonContent); err != nil {
-			return fmt.Errorf("failed to write configuration: %w", err)
-		}
+	// Always write YAML format
+	encoder := yaml.NewEncoder(file)
+	encoder.SetIndent(2)
+	if err := encoder.Encode(defaultConfig); err != nil {
+		return fmt.Errorf("failed to write configuration: %w", err)
 	}
 
 	absPath, _ := filepath.Abs(filename)
