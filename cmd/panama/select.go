@@ -87,7 +87,7 @@ func runSelect(args []string, opts *selectOptions) error {
 	if cfg.ConfigDir != "" {
 		searchRoot = cfg.ConfigDir
 	}
-	
+
 	workspaces, err := pipeline.CollectWorkspaces(searchRoot, cfg, pipelineOpts)
 	if err != nil {
 		return fmt.Errorf("failed to collect workspaces: %w", err)
@@ -99,7 +99,7 @@ func runSelect(args []string, opts *selectOptions) error {
 
 	// Check if we should use interactive mode
 	// Only check stdin as fuzzyfinder uses /dev/tty directly
-	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) && 
+	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) &&
 		!opts.first &&
 		cfg.UI != "stdio"
 

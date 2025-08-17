@@ -6,7 +6,7 @@ import (
 )
 
 var packageFiles = []string{
-	"package.json",      // Node.js
+	"package.json",     // Node.js
 	"go.mod",           // Go
 	"Cargo.toml",       // Rust
 	"pom.xml",          // Maven
@@ -60,7 +60,7 @@ func HasPackageFile(dir string) bool {
 
 func GetPackageType(dir string) string {
 	packageTypes := map[string]string{
-		"package.json":      "node",
+		"package.json":     "node",
 		"go.mod":           "go",
 		"Cargo.toml":       "rust",
 		"pom.xml":          "maven",

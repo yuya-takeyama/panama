@@ -12,15 +12,15 @@ import (
 )
 
 type Config struct {
-	UI          string     `yaml:"ui" toml:"ui" json:"ui"`
-	MaxDepth    int        `yaml:"max_depth" toml:"max_depth" json:"max_depth"`
-	Format      string     `yaml:"format" toml:"format" json:"format"`
-	Silent      bool       `yaml:"silent" toml:"silent" json:"silent"`
-	NoCache     bool       `yaml:"no_cache" toml:"no_cache" json:"no_cache"`
-	Workspaces  []string   `yaml:"workspaces" toml:"workspaces" json:"workspaces"`
-	IgnoreDirs  []string   `yaml:"ignore_dirs" toml:"ignore_dirs" json:"ignore_dirs"`
+	UI          string      `yaml:"ui" toml:"ui" json:"ui"`
+	MaxDepth    int         `yaml:"max_depth" toml:"max_depth" json:"max_depth"`
+	Format      string      `yaml:"format" toml:"format" json:"format"`
+	Silent      bool        `yaml:"silent" toml:"silent" json:"silent"`
+	NoCache     bool        `yaml:"no_cache" toml:"no_cache" json:"no_cache"`
+	Workspaces  []string    `yaml:"workspaces" toml:"workspaces" json:"workspaces"`
+	IgnoreDirs  []string    `yaml:"ignore_dirs" toml:"ignore_dirs" json:"ignore_dirs"`
 	ScoreConfig ScoreConfig `yaml:"score" toml:"score" json:"score"`
-	ConfigDir   string     `yaml:"-" toml:"-" json:"-"` // Directory where config was found
+	ConfigDir   string      `yaml:"-" toml:"-" json:"-"` // Directory where config was found
 }
 
 type ScoreConfig struct {

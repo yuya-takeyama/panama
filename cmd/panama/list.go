@@ -76,7 +76,7 @@ func runList(args []string, opts *listOptions) error {
 	if cfg.ConfigDir != "" {
 		searchRoot = cfg.ConfigDir
 	}
-	
+
 	workspaces, err := pipeline.CollectWorkspaces(searchRoot, cfg, pipelineOpts)
 	if err != nil {
 		return fmt.Errorf("failed to collect workspaces: %w", err)
