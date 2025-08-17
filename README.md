@@ -76,8 +76,8 @@ max_depth: 6
 # Default output format: path, cd, or json
 format: path
 
-# Custom workspace detection patterns
-# Defaults: package.json, go.mod, pyproject.toml
+# Workspace detection patterns
+# No defaults - configure based on your needs
 patterns:
   - package.json
   - go.mod
@@ -86,7 +86,8 @@ patterns:
   # - Cargo.toml        # Rust
   # - "*.xcodeproj"     # Xcode project
 
-# Directories to ignore
+# Directories to ignore during search
+# No defaults - configure based on your needs
 ignored_dirs:
   - node_modules
   - .git
@@ -105,19 +106,22 @@ ignored_dirs:
 Panama detects workspaces by looking for:
 
 ### Version Control
-- `.git` directories
+- `.git` directories (always detected)
 
-### Default Package Files
-By default, Panama looks for these minimal patterns:
-- `package.json` (Node.js)
-- `go.mod` (Go)
-- `pyproject.toml` (Python)
+### Package Files
+Without configuration, Panama only detects `.git` directories as workspaces.
+To detect package files, configure patterns in your `.panama.yaml`:
 
-### Custom Patterns
-You can add more detection patterns in your `.panama.yaml`:
-- Use exact filenames: `Cargo.toml`, `pom.xml`
-- Use glob patterns: `*.xcodeproj`, `*.workspace`
-- Add project-specific markers: `.workspace`, `project.config`
+```yaml
+patterns:
+  - package.json    # Node.js
+  - go.mod          # Go
+  - pyproject.toml  # Python
+  - Cargo.toml      # Rust
+  - "*.xcodeproj"   # Xcode projects (glob pattern)
+```
+
+Run `panama init` to create a configuration file with commonly used patterns.
 
 ## Shell Integration
 

@@ -6,13 +6,6 @@ import (
 	"strings"
 )
 
-// Default minimal patterns for workspace detection
-var defaultPatterns = []string{
-	"package.json",   // Node.js
-	"go.mod",         // Go
-	"pyproject.toml", // Python
-}
-
 // Detector holds configuration for workspace detection
 type Detector struct {
 	customPatterns []string
@@ -27,20 +20,19 @@ func NewDetector(patterns []string) *Detector {
 
 // IsWorkspaceWithPatterns checks if a directory is a workspace with custom patterns
 func (d *Detector) IsWorkspaceWithPatterns(dir string) bool {
-	// Check for .git directory
+	// Always check for .git directory
 	gitPath := filepath.Join(dir, ".git")
 	if info, err := os.Stat(gitPath); err == nil && info.IsDir() {
 		return true
 	}
 
-	// Use custom patterns if provided, otherwise use defaults
-	patterns := d.customPatterns
-	if len(patterns) == 0 {
-		patterns = defaultPatterns
+	// If no patterns configured, only .git directories are considered workspaces
+	if d == nil || len(d.customPatterns) == 0 {
+		return false
 	}
 
-	// Check patterns
-	for _, pattern := range patterns {
+	// Check custom patterns
+	for _, pattern := range d.customPatterns {
 		// Check if pattern contains glob characters
 		if strings.Contains(pattern, "*") || strings.Contains(pattern, "?") {
 			// Use glob matching
@@ -67,12 +59,18 @@ func IsWorkspace(dir string) bool {
 }
 
 // GetPackageType returns the package type for a directory
-// Only checks for the default patterns
+// Checks common package files if they exist
 func GetPackageType(dir string) string {
+	// Common package file mappings
 	packageTypes := map[string]string{
 		"package.json":   "node",
 		"go.mod":         "go",
 		"pyproject.toml": "python",
+		"Cargo.toml":     "rust",
+		"pom.xml":        "maven",
+		"build.gradle":   "gradle",
+		"Gemfile":        "ruby",
+		"composer.json":  "php",
 	}
 
 	for file, packageType := range packageTypes {

@@ -8,13 +8,10 @@ max_depth: 6
 # Options: path, cd, json
 format: path
 
-# Custom workspace detection patterns
+# Workspace detection patterns
 # Add file or directory patterns that indicate a workspace root
 # Supports glob patterns (e.g., "*.xcodeproj", "*.workspace")
-# Default patterns when not specified:
-#   - package.json     # Node.js
-#   - go.mod           # Go
-#   - pyproject.toml   # Python
+# Without these patterns, only .git directories will be detected as workspaces
 patterns:
   - package.json
   - go.mod
@@ -27,6 +24,7 @@ patterns:
 
 # Directories to ignore during workspace search
 # These directories will be skipped completely
+# Without this configuration, all directories will be searched
 ignored_dirs:
   - node_modules
   - .git

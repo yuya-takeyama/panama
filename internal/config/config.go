@@ -21,22 +21,12 @@ type Config struct {
 
 func DefaultConfig() *Config {
 	return &Config{
-		MaxDepth: 6,
-		Format:   "path",
-		Silent:   false,
-		NoCache:  false,
-		IgnoreDirs: []string{
-			"node_modules",
-			".git",
-			"vendor",
-			"target",
-			"dist",
-			"build",
-			".next",
-			".nuxt",
-			".cache",
-			"__pycache__",
-		},
+		MaxDepth:   6,
+		Format:     "path",
+		Silent:     false,
+		NoCache:    false,
+		IgnoreDirs: []string{}, // No defaults - configured via init
+		Patterns:   []string{}, // No defaults - configured via init
 	}
 }
 

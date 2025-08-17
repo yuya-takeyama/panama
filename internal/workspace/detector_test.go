@@ -24,21 +24,21 @@ func TestIsWorkspace(t *testing.T) {
 			setupFunc: func(dir string) error {
 				return os.WriteFile(filepath.Join(dir, "package.json"), []byte("{}"), 0644)
 			},
-			want: true,
+			want: false, // No default patterns, so package.json alone doesn't make it a workspace
 		},
 		{
 			name: "with go.mod",
 			setupFunc: func(dir string) error {
 				return os.WriteFile(filepath.Join(dir, "go.mod"), []byte("module test"), 0644)
 			},
-			want: true,
+			want: false, // No default patterns, so go.mod alone doesn't make it a workspace
 		},
 		{
 			name: "with pyproject.toml",
 			setupFunc: func(dir string) error {
 				return os.WriteFile(filepath.Join(dir, "pyproject.toml"), []byte("[tool.poetry]"), 0644)
 			},
-			want: true,
+			want: false, // No default patterns, so pyproject.toml alone doesn't make it a workspace
 		},
 		{
 			name: "empty directory",

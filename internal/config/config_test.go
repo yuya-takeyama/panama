@@ -17,20 +17,14 @@ func TestDefaultConfig(t *testing.T) {
 		t.Errorf("expected Format to be 'path', got '%s'", cfg.Format)
 	}
 
-	if len(cfg.IgnoreDirs) == 0 {
-		t.Error("expected IgnoreDirs to have default values")
+	// IgnoreDirs should be empty by default (configured via init)
+	if len(cfg.IgnoreDirs) != 0 {
+		t.Errorf("expected IgnoreDirs to be empty, got %v", cfg.IgnoreDirs)
 	}
 
-	// Check if .terraform is in the ignore list
-	hasTerraform := false
-	for _, dir := range cfg.IgnoreDirs {
-		if dir == ".terraform" {
-			hasTerraform = true
-			break
-		}
-	}
-	if !hasTerraform {
-		t.Error("expected .terraform to be in IgnoreDirs")
+	// Patterns should be empty by default (configured via init)
+	if len(cfg.Patterns) != 0 {
+		t.Errorf("expected Patterns to be empty, got %v", cfg.Patterns)
 	}
 }
 
