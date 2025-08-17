@@ -6,3 +6,5 @@
 - deps: update all dependencies and GitHub Actions by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/7
 - chore(deps): update actions/checkout action to v5 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/10
 - fix: add explicit permissions to GitHub App token in tagpr workflow by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/12
+- fix: use correct permission parameter format for create-github-app-token v2 by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/14
+- fix: remove explicit permission parameters from GitHub App token by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/15
