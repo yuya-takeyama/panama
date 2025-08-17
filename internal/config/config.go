@@ -20,6 +20,7 @@ type Config struct {
 	Workspaces  []string   `yaml:"workspaces" toml:"workspaces" json:"workspaces"`
 	IgnoreDirs  []string   `yaml:"ignore_dirs" toml:"ignore_dirs" json:"ignore_dirs"`
 	ScoreConfig ScoreConfig `yaml:"score" toml:"score" json:"score"`
+	ConfigDir   string     `yaml:"-" toml:"-" json:"-"` // Directory where config was found
 }
 
 type ScoreConfig struct {
@@ -63,6 +64,7 @@ func Load(configPath, rootDir string) *Config {
 		if err := loadFromFile(configPath, cfg); err != nil {
 			log.Printf("Warning: failed to load config from %s: %v", configPath, err)
 		}
+		cfg.ConfigDir = filepath.Dir(configPath)
 		return cfg
 	}
 
@@ -75,6 +77,7 @@ func Load(configPath, rootDir string) *Config {
 				if err := loadFromFile(path, cfg); err != nil {
 					log.Printf("Warning: failed to load config from %s: %v", path, err)
 				}
+				cfg.ConfigDir = dir // Store the directory where config was found
 				return cfg
 			}
 		}
@@ -86,6 +89,8 @@ func Load(configPath, rootDir string) *Config {
 		dir = parent
 	}
 
+	// No config found, use rootDir as default
+	cfg.ConfigDir = rootDir
 	return cfg
 }
 

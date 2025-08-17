@@ -82,7 +82,13 @@ func runSelect(args []string, opts *selectOptions) error {
 		NoCache:  opts.noCache,
 	}
 
-	workspaces, err := pipeline.CollectWorkspaces(absRoot, cfg, pipelineOpts)
+	// Use config directory as root if config was found
+	searchRoot := absRoot
+	if cfg.ConfigDir != "" {
+		searchRoot = cfg.ConfigDir
+	}
+	
+	workspaces, err := pipeline.CollectWorkspaces(searchRoot, cfg, pipelineOpts)
 	if err != nil {
 		return fmt.Errorf("failed to collect workspaces: %w", err)
 	}
@@ -92,8 +98,8 @@ func runSelect(args []string, opts *selectOptions) error {
 	}
 
 	// Check if we should use interactive mode
+	// Only check stdin as fuzzyfinder uses /dev/tty directly
 	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) && 
-		term.IsTerminal(int(os.Stdout.Fd())) && 
 		!opts.first &&
 		cfg.UI != "stdio"
 
@@ -104,7 +110,7 @@ func runSelect(args []string, opts *selectOptions) error {
 		items := make([]fuzzyfinder.Item, len(workspaces))
 		for i, ws := range workspaces {
 			items[i] = fuzzyfinder.Item{
-				Label:       ws.Label(),
+				Label:       ws.LabelWithBase(searchRoot),
 				Description: ws.Description,
 				Path:        ws.Path,
 				Score:       ws.Score,
@@ -123,7 +129,7 @@ func runSelect(args []string, opts *selectOptions) error {
 		items := make([]fuzzyfinder.Item, len(workspaces))
 		for i, ws := range workspaces {
 			items[i] = fuzzyfinder.Item{
-				Label:       ws.Label(),
+				Label:       ws.LabelWithBase(searchRoot),
 				Description: ws.Description,
 				Path:        ws.Path,
 				Score:       ws.Score,

@@ -71,7 +71,13 @@ func runList(args []string, opts *listOptions) error {
 		NoCache:  opts.noCache,
 	}
 
-	workspaces, err := pipeline.CollectWorkspaces(absRoot, cfg, pipelineOpts)
+	// Use config directory as root if config was found
+	searchRoot := absRoot
+	if cfg.ConfigDir != "" {
+		searchRoot = cfg.ConfigDir
+	}
+	
+	workspaces, err := pipeline.CollectWorkspaces(searchRoot, cfg, pipelineOpts)
 	if err != nil {
 		return fmt.Errorf("failed to collect workspaces: %w", err)
 	}

@@ -116,8 +116,8 @@ func SelectMulti(items []Item, query string) ([]int, error) {
 }
 
 func isTerminal() bool {
-	// Check if both stdin and stdout are terminals
-	return term.IsTerminal(int(os.Stdin.Fd())) && term.IsTerminal(int(os.Stdout.Fd()))
+	// Check if stdin is a terminal (fuzzyfinder uses /dev/tty directly)
+	return term.IsTerminal(int(os.Stdin.Fd()))
 }
 
 func wrapText(text string, width int) string {
