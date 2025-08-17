@@ -1,5 +1,7 @@
 # Panama
 
+Go ahead and jump into directories in a monorepo
+
 Fast workspace finder and switcher with built-in fuzzy finder.
 
 ## Features
@@ -10,6 +12,7 @@ Fast workspace finder and switcher with built-in fuzzy finder.
 - 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, Cargo.toml, etc.)
 - 🎯 **Intelligent scoring** - Prioritizes workspaces based on depth, type, and query matching
 - 🤖 **CI/CD friendly** - Fallback to non-interactive mode for automation
+- 🎨 **Current directory preselection** - Automatically highlights the current workspace in the fuzzy finder
 
 ## Installation
 
@@ -76,7 +79,7 @@ panama init
 Panama looks for configuration files in the following order:
 - `.panama.yaml` / `.panama.yml`
 
-The configuration file is searched upward from the current directory.
+The configuration file is searched upward from the current directory. When a configuration file is found, Panama uses that directory as the search root.
 
 ### Example configuration
 
@@ -95,6 +98,10 @@ ignore_dirs:
   - target
   - dist
   - build
+  - .next
+  - .nuxt
+  - .cache
+  - __pycache__
 
 # Workspace scoring configuration
 score:
@@ -123,7 +130,9 @@ Panama detects workspaces by looking for:
 - `mix.exs` (Elixir)
 - `Makefile`
 - `CMakeLists.txt` (CMake)
+- `.clang-format` (C/C++)
 - `stack.yaml` (Haskell)
+- `terraform.tf` / `main.tf` (Terraform)
 
 ## Shell Integration
 
@@ -159,6 +168,13 @@ end
 
 - `PANAMA_CONFIG` - Path to configuration file
 
+## Keyboard Shortcuts (Interactive Mode)
+
+- `↑`/`↓` or `Ctrl+P`/`Ctrl+N` - Navigate through workspaces
+- `Enter` - Select current workspace
+- `Ctrl+C` or `Esc` - Cancel selection
+- Type to filter workspaces in real-time
+
 ## Development
 
 ```bash
@@ -176,6 +192,20 @@ go test ./...
 go install ./cmd/panama
 ```
 
+## Requirements
+
+- Go 1.25 or later (for building from source)
+- No external runtime dependencies
+
 ## License
 
 MIT
+
+## Name Origin
+
+Panama stands for **P**roject-**A**ware **N**avigator **A**cross **M**onorepo **A**pps.
+
+### See also
+
+- https://www.youtube.com/watch?v=fuKDBPw8wQA
+- https://www.youtube.com/watch?v=SwYN7mTi6HM
