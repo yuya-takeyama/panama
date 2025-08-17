@@ -5,5 +5,4 @@
 - chore: Configure Renovate by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/3
 - deps: update all dependencies and GitHub Actions by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/7
 - chore(deps): update actions/checkout action to v5 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/10
-- Release for v0.0.1 by @yuya-takeyama-tagpr[bot] in https://github.com/yuya-takeyama/panama/pull/2
 - fix: add explicit permissions to GitHub App token in tagpr workflow by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/12
