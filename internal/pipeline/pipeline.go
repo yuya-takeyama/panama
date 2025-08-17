@@ -13,7 +13,6 @@ import (
 
 type Options struct {
 	Query    string
-	First    bool
 	MaxDepth int
 	NoCache  bool
 }

@@ -15,7 +15,6 @@ import (
 
 type selectOptions struct {
 	query    string
-	first    bool
 	format   string
 	maxDepth int
 	noCache  bool
@@ -39,7 +38,6 @@ If no path is provided, it searches from the current directory.`,
 
 	flags := cmd.Flags()
 	flags.StringVarP(&opts.query, "query", "q", "", "Initial search query")
-	flags.BoolVar(&opts.first, "first", false, "Select first result without interaction")
 	flags.StringVarP(&opts.format, "format", "f", "path", "Output format (path|cd|json)")
 	flags.IntVar(&opts.maxDepth, "max-depth", 0, "Maximum search depth (0 uses config default)")
 	flags.BoolVar(&opts.noCache, "no-cache", false, "Disable caching")
@@ -77,7 +75,6 @@ func runSelect(args []string, opts *selectOptions) error {
 	// Collect workspaces
 	pipelineOpts := pipeline.Options{
 		Query:    opts.query,
-		First:    opts.first,
 		MaxDepth: opts.maxDepth,
 		NoCache:  opts.noCache,
 	}
@@ -99,7 +96,7 @@ func runSelect(args []string, opts *selectOptions) error {
 
 	// Check if we should use interactive mode
 	// Only check stdin as fuzzyfinder uses /dev/tty directly
-	isInteractive := term.IsTerminal(int(os.Stdin.Fd())) && !opts.first
+	isInteractive := term.IsTerminal(int(os.Stdin.Fd()))
 
 	var selectedPath string
 
@@ -123,7 +120,7 @@ func runSelect(args []string, opts *selectOptions) error {
 
 		selectedPath = workspaces[idx].Path
 	} else {
-		// Non-interactive mode or --first flag
+		// Non-interactive mode
 		selectedPath = workspaces[0].Path
 	}
 

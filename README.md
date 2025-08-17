@@ -40,16 +40,6 @@ panama select -q api
 panama select -f cd
 ```
 
-### Non-interactive mode
-
-```bash
-# Select first result
-panama select --first
-
-# Use in scripts
-cd "$(panama select --first)"
-```
-
 ### List workspaces
 
 ```bash
