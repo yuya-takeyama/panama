@@ -68,7 +68,7 @@ func TestWorkspace_Label(t *testing.T) {
 				Name:   "myproject",
 				HasGit: true,
 			},
-			want: "/home/user/myproject [git]",
+			want: "/home/user/myproject",
 		},
 		{
 			name: "with package",
@@ -77,7 +77,7 @@ func TestWorkspace_Label(t *testing.T) {
 				Name:       "myproject",
 				HasPackage: true,
 			},
-			want: "/home/user/myproject [pkg]",
+			want: "/home/user/myproject",
 		},
 		{
 			name: "with both git and package",
@@ -87,7 +87,7 @@ func TestWorkspace_Label(t *testing.T) {
 				HasGit:     true,
 				HasPackage: true,
 			},
-			want: "/home/user/myproject [git] [pkg]",
+			want: "/home/user/myproject",
 		},
 	}
 
@@ -134,7 +134,7 @@ func TestWorkspace_LabelWithBase(t *testing.T) {
 				HasGit: true,
 			},
 			base: "/home/user/projects",
-			want: "myapp [git]",
+			want: "myapp",
 		},
 	}
 

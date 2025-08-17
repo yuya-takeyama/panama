@@ -16,26 +16,12 @@ type Workspace struct {
 
 func (w *Workspace) Label() string {
 	// Use path as-is for now, will be converted to relative in cmd
-	label := w.Path
-	if w.HasGit {
-		label += " [git]"
-	}
-	if w.HasPackage {
-		label += " [pkg]"
-	}
-	return label
+	return w.Path
 }
 
 func (w *Workspace) LabelWithBase(base string) string {
 	// Show relative path from base directory
-	label := w.RelativePath(base)
-	if w.HasGit {
-		label += " [git]"
-	}
-	if w.HasPackage {
-		label += " [pkg]"
-	}
-	return label
+	return w.RelativePath(base)
 }
 
 func (w *Workspace) RelativePath(base string) string {
