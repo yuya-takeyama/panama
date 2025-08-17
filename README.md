@@ -76,6 +76,16 @@ max_depth: 6
 # Default output format: path, cd, or json
 format: path
 
+# Custom workspace detection patterns
+# Defaults: package.json, go.mod, pyproject.toml
+patterns:
+  - package.json
+  - go.mod
+  - pyproject.toml
+  # Add more patterns as needed:
+  # - Cargo.toml        # Rust
+  # - "*.xcodeproj"     # Xcode project
+
 # Directories to ignore
 ignored_dirs:
   - node_modules
@@ -89,16 +99,6 @@ ignored_dirs:
   - .cache
   - __pycache__
   - .terraform
-
-# Custom workspace detection patterns
-# Defaults: package.json, go.mod, pyproject.toml
-patterns:
-  - package.json
-  - go.mod
-  - pyproject.toml
-  # Add more patterns as needed:
-  # - Cargo.toml        # Rust
-  # - "*.xcodeproj"     # Xcode project
 ```
 
 ## Workspace Detection

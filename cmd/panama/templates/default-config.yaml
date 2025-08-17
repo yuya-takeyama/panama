@@ -2,28 +2,11 @@
 # https://github.com/yuya-takeyama/panama
 
 # Maximum depth to search for workspaces from the root directory
-# Default: 6
 max_depth: 6
 
 # Output format for results
 # Options: path, cd, json
-# Default: path
 format: path
-
-# Directories to ignore during workspace search
-# These directories will be skipped completely
-ignored_dirs:
-  - node_modules
-  - .git
-  - vendor
-  - target
-  - dist
-  - build
-  - .next
-  - .nuxt
-  - .cache
-  - __pycache__
-  - .terraform
 
 # Custom workspace detection patterns
 # Add file or directory patterns that indicate a workspace root
@@ -41,3 +24,18 @@ patterns:
   # - pom.xml           # Maven
   # - "*.xcodeproj"     # Xcode project
   # - workspace.json    # Nx monorepo
+
+# Directories to ignore during workspace search
+# These directories will be skipped completely
+ignored_dirs:
+  - node_modules
+  - .git
+  - vendor
+  - target
+  - dist
+  - build
+  - .next
+  - .nuxt
+  - .cache
+  - __pycache__
+  - .terraform
