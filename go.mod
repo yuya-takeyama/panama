@@ -3,7 +3,7 @@ module github.com/yuya-takeyama/panama
 go 1.25
 
 require (
-	github.com/bmatcuk/doublestar/v4 v4.6.1
+	github.com/bmatcuk/doublestar/v4 v4.9.1
 	github.com/goccy/go-yaml v1.15.13
 	github.com/ktr0731/go-fuzzyfinder v0.9.0
 	github.com/spf13/cobra v1.8.0
