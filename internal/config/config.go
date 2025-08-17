@@ -10,20 +10,13 @@ import (
 )
 
 type Config struct {
-	MaxDepth    int         `yaml:"max_depth"`
-	Format      string      `yaml:"format"`
-	Silent      bool        `yaml:"silent"`
-	NoCache     bool        `yaml:"no_cache"`
-	Workspaces  []string    `yaml:"workspaces"`
-	IgnoreDirs  []string    `yaml:"ignore_dirs"`
-	ScoreConfig ScoreConfig `yaml:"score"`
-	ConfigDir   string      `yaml:"-"` // Directory where config was found
-}
-
-type ScoreConfig struct {
-	RecentAccessWeight float64 `yaml:"recent_access_weight"`
-	FrequencyWeight    float64 `yaml:"frequency_weight"`
-	DepthPenalty       float64 `yaml:"depth_penalty"`
+	MaxDepth   int      `yaml:"max_depth"`
+	Format     string   `yaml:"format"`
+	Silent     bool     `yaml:"silent"`
+	NoCache    bool     `yaml:"no_cache"`
+	Workspaces []string `yaml:"workspaces"`
+	IgnoreDirs []string `yaml:"ignore_dirs"`
+	ConfigDir  string   `yaml:"-"` // Directory where config was found
 }
 
 func DefaultConfig() *Config {
@@ -44,11 +37,6 @@ func DefaultConfig() *Config {
 			".cache",
 			"__pycache__",
 			".terraform",
-		},
-		ScoreConfig: ScoreConfig{
-			RecentAccessWeight: 0.5,
-			FrequencyWeight:    0.3,
-			DepthPenalty:       0.1,
 		},
 	}
 }

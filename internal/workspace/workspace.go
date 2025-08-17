@@ -6,13 +6,12 @@ import (
 )
 
 type Workspace struct {
-	Path        string  `json:"path"`
-	Name        string  `json:"name"`
-	Description string  `json:"description,omitempty"`
-	Score       float64 `json:"score,omitempty"`
-	Depth       int     `json:"depth"`
-	HasGit      bool    `json:"has_git"`
-	HasPackage  bool    `json:"has_package"`
+	Path        string `json:"path"`
+	Name        string `json:"name"`
+	Description string `json:"description,omitempty"`
+	Depth       int    `json:"depth"`
+	HasGit      bool   `json:"has_git"`
+	HasPackage  bool   `json:"has_package"`
 }
 
 func (w *Workspace) Label() string {

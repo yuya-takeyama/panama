@@ -8,7 +8,6 @@ Go ahead and jump into directories in a monorepo
 - 🔍 **Built-in fuzzy finder** - No external dependencies like `fzf` required
 - 🌍 **Cross-platform** - Works on macOS, Linux, and Windows
 - 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, Cargo.toml, etc.)
-- 🎯 **Intelligent scoring** - Prioritizes workspaces based on depth, type, and query matching
 
 ## Installation
 
@@ -88,12 +87,6 @@ ignore_dirs:
   - .nuxt
   - .cache
   - __pycache__
-
-# Workspace scoring configuration
-score:
-  recent_access_weight: 0.5
-  frequency_weight: 0.3
-  depth_penalty: 0.1
 ```
 
 ## Workspace Detection

@@ -4,7 +4,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
 
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/yuya-takeyama/panama/internal/config"
@@ -52,9 +51,10 @@ func CollectWorkspaces(rootDir string, cfg *config.Config, opts Options) ([]*wor
 		}
 	}
 
-	// Score and sort workspaces
-	scoreWorkspaces(workspaces, cfg.ScoreConfig, opts.Query)
-	sort.Sort(byScore(workspaces))
+	// Sort workspaces by path
+	sort.Slice(workspaces, func(i, j int) bool {
+		return workspaces[i].Path < workspaces[j].Path
+	})
 
 	return workspaces, nil
 }
@@ -114,43 +114,3 @@ func collectFromPath(searchPath, basePath string, maxDepth int, ignorePatterns [
 		return nil
 	})
 }
-
-func scoreWorkspaces(workspaces []*workspace.Workspace, cfg config.ScoreConfig, query string) {
-	for _, ws := range workspaces {
-		score := 1.0
-
-		// Depth penalty
-		score -= float64(ws.Depth) * cfg.DepthPenalty
-
-		// Bonus for git repos
-		if ws.HasGit {
-			score += 0.2
-		}
-
-		// Bonus for package files
-		if ws.HasPackage {
-			score += 0.1
-		}
-
-		// Query matching bonus
-		if query != "" {
-			lowerQuery := strings.ToLower(query)
-			lowerName := strings.ToLower(ws.Name)
-			lowerPath := strings.ToLower(ws.Path)
-
-			if strings.Contains(lowerName, lowerQuery) {
-				score += 0.5
-			} else if strings.Contains(lowerPath, lowerQuery) {
-				score += 0.3
-			}
-		}
-
-		ws.Score = score
-	}
-}
-
-type byScore []*workspace.Workspace
-
-func (s byScore) Len() int           { return len(s) }
-func (s byScore) Less(i, j int) bool { return s[i].Score > s[j].Score }
-func (s byScore) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }

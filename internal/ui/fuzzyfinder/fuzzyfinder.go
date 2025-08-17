@@ -13,7 +13,6 @@ type Item struct {
 	Label       string
 	Description string
 	Path        string
-	Score       float64
 }
 
 func Select(items []Item, query string) (int, error) {

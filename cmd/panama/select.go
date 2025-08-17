@@ -108,7 +108,6 @@ func runSelect(args []string, opts *selectOptions) error {
 				Label:       ws.LabelWithBase(searchRoot),
 				Description: ws.Description,
 				Path:        ws.Path,
-				Score:       ws.Score,
 			}
 		}
 
