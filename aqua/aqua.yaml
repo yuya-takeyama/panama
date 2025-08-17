@@ -14,3 +14,4 @@ packages:
   - name: cli/cli@v2.76.0
   - name: goreleaser/goreleaser@v2.11.1
   - name: Songmu/tagpr@v1.7.0
+  - name: suzuki-shunsuke/pinact@v3.4.1
