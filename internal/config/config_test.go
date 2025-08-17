@@ -9,8 +9,8 @@ import (
 func TestDefaultConfig(t *testing.T) {
 	cfg := DefaultConfig()
 
-	if cfg.MaxDepth != 3 {
-		t.Errorf("expected MaxDepth to be 3, got %d", cfg.MaxDepth)
+	if cfg.MaxDepth != 6 {
+		t.Errorf("expected MaxDepth to be 6, got %d", cfg.MaxDepth)
 	}
 
 	if cfg.Format != "path" {
@@ -19,6 +19,18 @@ func TestDefaultConfig(t *testing.T) {
 
 	if len(cfg.IgnoreDirs) == 0 {
 		t.Error("expected IgnoreDirs to have default values")
+	}
+
+	// Check if .terraform is in the ignore list
+	hasTerraform := false
+	for _, dir := range cfg.IgnoreDirs {
+		if dir == ".terraform" {
+			hasTerraform = true
+			break
+		}
+	}
+	if !hasTerraform {
+		t.Error("expected .terraform to be in IgnoreDirs")
 	}
 }
 
