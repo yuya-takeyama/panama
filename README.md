@@ -9,7 +9,6 @@ Go ahead and jump into directories in a monorepo
 - 🌍 **Cross-platform** - Works on macOS, Linux, and Windows
 - 📁 **Smart detection** - Recognizes projects by package files (package.json, go.mod, Cargo.toml, etc.)
 - 🎯 **Intelligent scoring** - Prioritizes workspaces based on depth, type, and query matching
-- 🎨 **Current directory preselection** - Automatically highlights the current workspace in the fuzzy finder
 
 ## Installation
 
