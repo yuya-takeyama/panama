@@ -9,8 +9,8 @@ import (
 func TestDefaultConfig(t *testing.T) {
 	cfg := DefaultConfig()
 
-	if cfg.MaxDepth != 6 {
-		t.Errorf("expected MaxDepth to be 6, got %d", cfg.MaxDepth)
+	if cfg.MaxDepth != 3 {
+		t.Errorf("expected MaxDepth to be 3, got %d", cfg.MaxDepth)
 	}
 
 	if cfg.Format != "path" {
