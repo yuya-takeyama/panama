@@ -1,0 +1,98 @@
+package workspace
+
+import (
+	"testing"
+)
+
+func TestCalculateDepth(t *testing.T) {
+	tests := []struct {
+		name       string
+		basePath   string
+		targetPath string
+		want       int
+	}{
+		{
+			name:       "same directory",
+			basePath:   "/home/user/projects",
+			targetPath: "/home/user/projects",
+			want:       0,
+		},
+		{
+			name:       "one level deep",
+			basePath:   "/home/user/projects",
+			targetPath: "/home/user/projects/app",
+			want:       1,
+		},
+		{
+			name:       "two levels deep",
+			basePath:   "/home/user/projects",
+			targetPath: "/home/user/projects/frontend/app",
+			want:       2,
+		},
+		{
+			name:       "different path",
+			basePath:   "/home/user",
+			targetPath: "/var/log",
+			want:       0,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := CalculateDepth(tt.basePath, tt.targetPath)
+			if got != tt.want {
+				t.Errorf("CalculateDepth() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestWorkspace_Label(t *testing.T) {
+	tests := []struct {
+		name string
+		ws   Workspace
+		want string
+	}{
+		{
+			name: "plain workspace",
+			ws: Workspace{
+				Name: "myproject",
+			},
+			want: "myproject",
+		},
+		{
+			name: "with git",
+			ws: Workspace{
+				Name:   "myproject",
+				HasGit: true,
+			},
+			want: "myproject [git]",
+		},
+		{
+			name: "with package",
+			ws: Workspace{
+				Name:       "myproject",
+				HasPackage: true,
+			},
+			want: "myproject [pkg]",
+		},
+		{
+			name: "with both git and package",
+			ws: Workspace{
+				Name:       "myproject",
+				HasGit:     true,
+				HasPackage: true,
+			},
+			want: "myproject [git] [pkg]",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.ws.Label()
+			if got != tt.want {
+				t.Errorf("Workspace.Label() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
