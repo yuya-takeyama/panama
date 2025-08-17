@@ -42,7 +42,7 @@ func runInit(opts *initOptions) error {
 
 	// Create default configuration
 	defaultConfig := map[string]interface{}{
-		"max_depth": 3,
+		"max_depth": 6,
 		"format":    "path",
 		"ignored_dirs": []string{
 			"node_modules",

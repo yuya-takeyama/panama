@@ -70,7 +70,7 @@ The configuration file is searched upward from the current directory. When a con
 
 ```yaml
 # Maximum search depth
-max_depth: 3
+max_depth: 6
 
 # Default output format: path, cd, or json
 format: path

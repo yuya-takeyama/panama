@@ -21,7 +21,7 @@ type Config struct {
 
 func DefaultConfig() *Config {
 	return &Config{
-		MaxDepth: 3,
+		MaxDepth: 6,
 		Format:   "path",
 		Silent:   false,
 		NoCache:  false,
