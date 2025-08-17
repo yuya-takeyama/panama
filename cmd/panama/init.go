@@ -56,11 +56,6 @@ func runInit(opts *initOptions) error {
 			".cache",
 			"__pycache__",
 		},
-		"score": map[string]interface{}{
-			"recent_access_weight": 0.5,
-			"frequency_weight":     0.3,
-			"depth_penalty":        0.1,
-		},
 	}
 
 	// Write configuration file
