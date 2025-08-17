@@ -15,13 +15,13 @@ type Config struct {
 	Silent     bool     `yaml:"silent"`
 	NoCache    bool     `yaml:"no_cache"`
 	Workspaces []string `yaml:"workspaces"`
-	IgnoreDirs []string `yaml:"ignore_dirs"`
+	IgnoreDirs []string `yaml:"ignored_dirs"`
 	ConfigDir  string   `yaml:"-"` // Directory where config was found
 }
 
 func DefaultConfig() *Config {
 	return &Config{
-		MaxDepth: 6,
+		MaxDepth: 3,
 		Format:   "path",
 		Silent:   false,
 		NoCache:  false,

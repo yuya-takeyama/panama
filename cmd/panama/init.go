@@ -44,7 +44,7 @@ func runInit(opts *initOptions) error {
 	defaultConfig := map[string]interface{}{
 		"max_depth": 3,
 		"format":    "path",
-		"ignore_dirs": []string{
+		"ignored_dirs": []string{
 			"node_modules",
 			".git",
 			"vendor",
@@ -55,6 +55,7 @@ func runInit(opts *initOptions) error {
 			".nuxt",
 			".cache",
 			"__pycache__",
+			".terraform",
 		},
 	}
 

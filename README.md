@@ -76,7 +76,7 @@ max_depth: 3
 format: path
 
 # Directories to ignore
-ignore_dirs:
+ignored_dirs:
   - node_modules
   - .git
   - vendor
@@ -87,6 +87,7 @@ ignore_dirs:
   - .nuxt
   - .cache
   - __pycache__
+  - .terraform
 ```
 
 ## Workspace Detection
