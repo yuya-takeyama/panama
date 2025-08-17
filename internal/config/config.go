@@ -28,7 +28,7 @@ type ScoreConfig struct {
 
 func DefaultConfig() *Config {
 	return &Config{
-		MaxDepth: 3,
+		MaxDepth: 6,
 		Format:   "path",
 		Silent:   false,
 		NoCache:  false,
@@ -43,6 +43,7 @@ func DefaultConfig() *Config {
 			".nuxt",
 			".cache",
 			"__pycache__",
+			".terraform",
 		},
 		ScoreConfig: ScoreConfig{
 			RecentAccessWeight: 0.5,
