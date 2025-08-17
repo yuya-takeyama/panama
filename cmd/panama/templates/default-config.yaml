@@ -33,9 +33,3 @@ ignored_dirs:
 #   - project.config    # Project-specific config file
 #   - "*.xcodeproj"     # Xcode project directories
 #   - workspace.json    # Nx monorepo workspace
-
-# Specific workspace directories to search
-# Uncomment and modify if you want to limit search to specific directories
-# workspaces:
-#   - ./projects
-#   - ./packages

@@ -14,7 +14,6 @@ type Config struct {
 	Format     string   `yaml:"format"`
 	Silent     bool     `yaml:"silent"`
 	NoCache    bool     `yaml:"no_cache"`
-	Workspaces []string `yaml:"workspaces"`
 	IgnoreDirs []string `yaml:"ignored_dirs"`
 	Patterns   []string `yaml:"patterns"` // Custom workspace detection patterns
 	ConfigDir  string   `yaml:"-"`        // Directory where config was found

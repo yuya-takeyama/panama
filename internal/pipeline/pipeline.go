@@ -34,24 +34,9 @@ func CollectWorkspaces(rootDir string, cfg *config.Config, opts Options) ([]*wor
 
 	visited := make(map[string]bool)
 
-	// If specific workspace directories are configured, search those
-	if len(cfg.Workspaces) > 0 {
-		for _, wsPath := range cfg.Workspaces {
-			absPath := wsPath
-			if !filepath.IsAbs(wsPath) {
-				absPath = filepath.Join(rootDir, wsPath)
-			}
-
-			if err := collectFromPath(absPath, rootDir, maxDepth, ignorePatterns, visited, detector, &workspaces); err != nil {
-				// Log but continue with other paths
-				continue
-			}
-		}
-	} else {
-		// Search from root directory
-		if err := collectFromPath(rootDir, rootDir, maxDepth, ignorePatterns, visited, detector, &workspaces); err != nil {
-			return nil, err
-		}
+	// Search from root directory
+	if err := collectFromPath(rootDir, rootDir, maxDepth, ignorePatterns, visited, detector, &workspaces); err != nil {
+		return nil, err
 	}
 
 	// Sort workspaces by path
