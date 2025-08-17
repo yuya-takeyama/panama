@@ -3,6 +3,7 @@ version: 2
 before:
   hooks:
     - go mod tidy
+    - go generate ./...
 
 builds:
   - id: panama
@@ -28,6 +29,7 @@ builds:
       - -X main.version={{.Version}}
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.builtBy=goreleaser
 
 archives:
   - id: default
@@ -43,7 +45,7 @@ archives:
         format: zip
 
 checksum:
-  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
+  name_template: "checksums.txt"
   algorithm: sha256
 
 sboms:
