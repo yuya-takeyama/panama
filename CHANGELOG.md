@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.3](https://github.com/yuya-takeyama/panama/compare/v0.0.2...v0.0.3) - 2025-08-17
+- fix: add third_party_licenses to .gitignore by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/19
+
 ## [v0.0.2](https://github.com/yuya-takeyama/panama/compare/v0.0.1...v0.0.2) - 2025-08-17
 - feat: add missing tools to aqua.yaml by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/17
 
