@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.5](https://github.com/yuya-takeyama/panama/compare/v0.0.4...v0.0.5) - 2025-08-18
+- fix: use tag reference instead of SHA for SLSA generator by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/23
+
 ## [v0.0.4](https://github.com/yuya-takeyama/panama/compare/v0.0.3...v0.0.4) - 2025-08-18
 - fix: remove compile-generator flag from SLSA provenance generation by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/21
 
