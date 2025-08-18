@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.0](https://github.com/yuya-takeyama/panama/compare/v0.0.5...v0.1.0) - 2025-08-18
+- docs: rename shell function from pw to jump for clarity by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/25
+- feat: add panama root command to find project root directory by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/27
+
 ## [v0.0.5](https://github.com/yuya-takeyama/panama/compare/v0.0.4...v0.0.5) - 2025-08-18
 - fix: use tag reference instead of SHA for SLSA generator by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/23
 
