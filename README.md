@@ -60,6 +60,16 @@ panama list --max-depth 2
 panama init
 ```
 
+### Find monorepo root
+
+```bash
+# Print root directory containing panama config
+panama root
+
+# Output as cd command
+panama root -f cd
+```
+
 ## Configuration
 
 Panama looks for configuration files in the following order:
@@ -139,6 +149,19 @@ jump() {
     cd "$dir"
   fi
 }
+
+# Navigate to monorepo root
+# Quickly jump to the root directory containing the panama config or .git
+cdroot() {
+  local dir
+  dir=$(panama root 2>/dev/null)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  else
+    echo "No root workspace found in parent directories" >&2
+    return 1
+  fi
+}
 ```
 
 ### Fish
@@ -151,6 +174,22 @@ function jump
   set -l dir (panama select $argv)
   if test -n "$dir"
     cd $dir
+  end
+end
+```
+
+Add to your `~/.config/fish/functions/cdroot.fish`:
+
+```fish
+# Navigate to monorepo root
+# Quickly jump to the root directory containing the panama config or .git
+function cdroot
+  set -l dir (panama root 2>/dev/null)
+  if test -n "$dir"
+    cd $dir
+  else
+    echo "No root workspace found in parent directories" >&2
+    return 1
   end
 end
 ```

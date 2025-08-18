@@ -35,6 +35,7 @@ It automatically detects Git repositories and project directories with package f
 		newSelectCommand(),
 		newListCommand(),
 		newInitCommand(),
+		newRootCommand(),
 		newVersionCommand(),
 	)
 
