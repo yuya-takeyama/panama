@@ -131,7 +131,8 @@ Add to your `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 # Quick workspace switcher
-pw() {
+# You can name this function whatever you like (e.g., j, pw, workspace, etc.)
+jump() {
   local dir
   dir=$(panama select "$@")
   if [[ -n "$dir" ]]; then
@@ -142,10 +143,11 @@ pw() {
 
 ### Fish
 
-Add to your `~/.config/fish/functions/pw.fish`:
+Add to your `~/.config/fish/functions/jump.fish`:
 
 ```fish
-function pw
+# You can name this function whatever you like (e.g., j, pw, workspace, etc.)
+function jump
   set -l dir (panama select $argv)
   if test -n "$dir"
     cd $dir
