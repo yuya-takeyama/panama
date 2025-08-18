@@ -212,3 +212,4 @@ jobs:
       base64-subjects: "${{ needs.build.outputs.hashes }}"
       # Upload provenance to existing release
       upload-assets: true
+      upload-tag-name: ${{ github.ref_name }}
