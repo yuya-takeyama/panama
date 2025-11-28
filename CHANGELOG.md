@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.1](https://github.com/yuya-takeyama/panama/compare/v0.1.0...v0.1.1) - 2025-11-28
+- chore(deps): update actions/checkout action to v6 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/37
+- chore(deps): update actions/create-github-app-token action to v2.2.0 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/34
+- fix(deps): update module github.com/spf13/cobra to v1.10.1 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/31
+- chore(deps): update actions/setup-go action to v6 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/32
+- chore(deps): update songmu/tagpr action to v1.9.0 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/30
+- Update and rename renovate.json to renovate.json5 by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/39
+- fix(deps): update module golang.org/x/term to v0.37.0 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/33
+- chore(deps): update aquaproj/aqua-installer action to v4.0.4 by @renovate[bot] in https://github.com/yuya-takeyama/panama/pull/29
+
 ## [v0.1.0](https://github.com/yuya-takeyama/panama/compare/v0.0.5...v0.1.0) - 2025-08-18
 - docs: rename shell function from pw to jump for clarity by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/25
 - feat: add panama root command to find project root directory by @yuya-takeyama in https://github.com/yuya-takeyama/panama/pull/27
