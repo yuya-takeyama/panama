@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/bmatcuk/doublestar/v4 v4.10.0
-	github.com/goccy/go-yaml v1.18.0
+	github.com/goccy/go-yaml v1.19.2
 	github.com/ktr0731/go-fuzzyfinder v0.9.0
 	github.com/spf13/cobra v1.10.2
 	golang.org/x/term v0.39.0
